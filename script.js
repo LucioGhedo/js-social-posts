@@ -19,7 +19,23 @@ const teams = [
     }
 ];
 
-const ciao = allPostDraw(teams);
+const drawPost = allPostDraw(teams);
+const allClickableElements = document.querySelectorAll('.like-button');
+const allTextsElements = document.querySelectorAll('#like-counter-1');
+
+for(let i = 0; i < allClickableElements.length; i++) {
+    const thisClickableElement = allClickableElements[i];
+    const thisTextElement = allTextsElements[i];
+    thisClickableElement.addEventListener('click', function() {
+        const relatedText = parseInt(allTextsElements[i].innerHTML);
+        thisClickableElement.classList.add('like-button--liked');
+        let newLike = 0;
+        newLike = newLike + relatedText + 1;
+        thisTextElement.innerHTML = '';
+        thisTextElement.innerHTML += newLike
+        console.log(newLike)
+    });
+}
 
 // function
 function allPostDraw(postArray) {
