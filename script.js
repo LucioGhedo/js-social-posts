@@ -18,22 +18,32 @@ const teams = [
         likeCount: '120',
     }
 ];
-
+// richiamo funzione per creare e stampare post
 const drawPost = allPostDraw(teams);
+// seleziono il like button
 const allClickableElements = document.querySelectorAll('.like-button');
+// seleziono like counter
 const allTextsElements = document.querySelectorAll('#like-counter-1');
 
+// scorro tutti gli elementi cliccabili
 for(let i = 0; i < allClickableElements.length; i++) {
+    // seleziono l'elemento cliccato
     const thisClickableElement = allClickableElements[i];
+    // e il suo relativo counter
     const thisTextElement = allTextsElements[i];
+    // eventlistnener del click
     thisClickableElement.addEventListener('click', function() {
+        // trasformop il counter da stringa in numero
         const relatedText = parseInt(allTextsElements[i].innerHTML);
+        // aggiungo style al click del like
         thisClickableElement.classList.add('like-button--liked');
+        // somma like
         let newLike = 0;
         newLike = newLike + relatedText + 1;
+        // svuoto html like counter
         thisTextElement.innerHTML = '';
+        // aggiorno con nuovo like counter
         thisTextElement.innerHTML += newLike
-        console.log(newLike)
     });
 }
 
